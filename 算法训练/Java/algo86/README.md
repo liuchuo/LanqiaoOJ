@@ -1,1 +1,0 @@
-<img src="screenshot-lx.lanqiao.org 2015-12-15 09-43-03.png">
