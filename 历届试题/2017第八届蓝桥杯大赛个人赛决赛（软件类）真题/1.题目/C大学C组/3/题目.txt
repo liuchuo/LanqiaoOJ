@@ -1,0 +1,63 @@
+
+标题：表达式计算
+
+虽然我们学了许久的程序设计，但对于简单的四则混合运算式，如果让我们完全白手起家地编程来解析，还是有点棘手。
+
+这里，我们简化一下问题，假设只有加法和乘法，并且没有括号来改变优先级。
+再假设参加运算的都是正整数。
+
+在这么多的限制条件下，表达式的解析似乎简单了许多。
+下面的代码解决了这个问题。请仔细阅读源码，并填写划线部分缺少的代码。
+
+
+#include <stdio.h>
+
+int f3(const char* s, int begin, int end)
+{
+	int sum = 0;
+	int i;
+	for(i=begin; i<end; i++){
+		if(s[i]==' ') continue;
+		sum = sum * 10 + (s[i]-'0');
+	}
+	return sum;
+}
+
+int f2(const char* s, int begin, int end)
+{
+	int p = begin;
+	int pro = 1;
+	while(1){
+		int p0 = p;
+		while(p!=end && s[p]!='*') p++;
+		pro *= _______________________________;  //填空
+		if(p==end) break; 
+		p++;
+	}
+	printf("f2: pro=%d\n", pro);
+	return pro;
+}
+
+int f(const char* s)
+{
+	int p = 0;
+	int sum = 0;
+	while(1){
+		int p0 = p;
+		while(s[p]!=0 && s[p]!='+') p++;
+		sum += f2(s,p0,p);
+		if(s[p]==0) break;
+		p++;
+	}
+	
+	return sum;
+}
+
+int main()
+{
+	int x = f("12+18+5*4*3+10");
+	printf("%d\n", x);
+	return 0;
+}
+
+注意：只填写划线处缺少的内容，不要填写已有的代码或符号，也不要填写任何解释说明文字等。
