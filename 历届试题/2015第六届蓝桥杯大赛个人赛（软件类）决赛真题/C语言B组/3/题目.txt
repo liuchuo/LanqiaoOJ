@@ -1,0 +1,54 @@
+
+标题：关联账户
+
+为增大反腐力度，某地警方专门支队，对若干银行账户展开调查。
+
+如果两个账户间发生过转账，则认为有关联。如果a,b间有关联, b,c间有关联，则认为a,c间也有关联。
+
+对于调查范围内的n个账户（编号0到n-1），警方已知道m条因转账引起的直接关联。
+
+现在希望知道任意给定的两个账户，求出它们间是否有关联。有关联的输出1，没有关联输出0
+
+小明给出了如下的解决方案：
+
+#include <stdio.h>
+#define N 100
+
+int connected(int* m, int p, int q)
+{
+	return m[p]==m[q]? 1 : 0;
+}
+
+void link(int* m, int p, int q)
+{
+	int i;
+	if(connected(m,p,q)) return;
+	int pID = m[p];
+	int qID = m[q];
+	for(i=0; i<N; i++) _____________________________________;  //填空位置
+}
+
+int main()
+{
+	int m[N];
+	int i;
+	for(i=0; i<N; i++) m[i] = i; //初始状态，每个节点自成一个连通域
+	link(m,0,1); //添加两个账户间的转账关联
+	link(m,1,2); 
+	link(m,3,4); 
+	link(m,5,6); 
+	link(m,6,7); 
+	link(m,8,9); 
+	link(m,3,7); 
+	
+	printf("%d ", connected(m,4,7));
+	printf("%d ", connected(m,4,5));
+	printf("%d ", connected(m,7,9));
+	printf("%d ", connected(m,9,2));
+	return 0;
+}
+
+
+请分析源代码，并提交划线部分缺少的代码。不要填写已有代码或任何多余内容。
+
+

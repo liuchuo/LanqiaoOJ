@@ -1,0 +1,61 @@
+
+参考答案：
+for(int i=0; i<q-p; i++) System.out.print("*")
+
+正确直接得分，否则把用户答案带入测评代码中的######，运行结果比对：
+***.....***
+.***...***
+..***.***
+...*****
+....***
+...*****
+..***.***
+.***...***
+***.....***
+*****......*****
+.*****....*****
+..*****..*****
+...**********
+....********
+.....******
+.....******
+....********
+...**********
+..*****..*****
+.*****....*****
+*****......*****
+
+
+测评程序为：
+
+public class Main
+{
+	static void f(int h, int w){
+		int a1 = 0;
+		int a2 = h - 1;
+		
+		for(int k=0; k<h; k++){
+			int p = Math.min(a1,a2);
+			int q = Math.max(a1+w,a2+w);
+			
+			for(int i=0; i<p; i++) System.out.print(".");
+			
+			if(q-p<w*2){
+				###### ;
+			}
+			else{
+				for(int i=0; i<w; i++) System.out.print("*");
+				for(int i=0; i<q-p-w*2; i++) System.out.print(".");
+				for(int i=0; i<w; i++) System.out.print("*");
+			}
+			System.out.println();
+			a1++;
+			a2--;
+		}
+	}
+	
+	public static void main(String[] args){
+		f(9,3);
+		f(12,5);
+	}
+}
