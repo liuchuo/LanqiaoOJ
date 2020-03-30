@@ -2,6 +2,7 @@
 
 ​			https://acmore.cc/
 
+这篇文章也挺值得一看。
 [关于动态规划的清晰讲解](https://labuladong.gitbook.io/algo/di-ling-zhang-bi-du-xi-lie/dong-tai-gui-hua-xiang-jie-jin-jie)
 
 [DP]: https://labuladong.gitbook.io/algo/di-ling-zhang-bi-du-xi-lie/dong-tai-gui-hua-xiang-jie-jin-jie	"动态规划"
