@@ -5,7 +5,6 @@
 1. 如果登录不上蓝桥杯的网站，或者是没有VIP账号的同学可以使用[这个网址](https://acmore.cc/)。
 
 2. [关于动态规划的清晰讲解](https://labuladong.gitbook.io/algo/di-ling-zhang-bi-du-xi-lie/dong-tai-gui-hua-xiang-jie-jin-jie)
-3. 
 
 ## 官方题库
 
