@@ -1,0 +1,33 @@
+
+参考答案：
+k%2==0 ? (c-'0')*3 : (c-'0')
+
+正确直接得分，否则把用户答案带入测评代码中的######，运行结果比对：
+false
+true
+true
+
+测评程序为：
+
+public class Main
+{
+	static boolean f(String s){
+		int k=1;
+		int sum = 0;
+		for(int i=0; i<s.length(); i++){
+			char c = s.charAt(i);
+			if(c=='-' || c==' ') continue;
+			sum += ######;
+			k++;
+			if(k>12) break; 
+		}
+		
+		return s.charAt(s.length()-1)-'0' == (10-sum % 10)%10;
+	}
+	
+	public static void main(String[] args){
+		System.out.println(f("978-7-115-38821-5"));
+		System.out.println(f("978-7-301-04815-3"));
+		System.out.println(f("978-7-115-38821-6"));
+	}
+}

@@ -1,0 +1,157 @@
+package b2017;
+
+public class tt {
+
+    public static void main(String[] args) {
+        int count = 0;
+        for (int i = 1; i < 10; i++) {
+            for (int j = 1; j < 10; j++) {
+                for (int k = 1; k < 10; k++) {
+                    for (int l = 1; l < 10; l++) {
+                        for (int m = 1; m < 10; m++) {
+                            for (int n = 1; n < 10; n++) {
+                                for (int o = 1; o < 10; o++) {
+                                    for (int p = 1; p < 10; p++) {
+                                        for (int q = 1; q < 10; q++) {
+                                            if ((i + j + k + l) == (l + m + n + o) && (i + j + k + l) == (o + q + p + i)
+                                                    //之所以要有这里的原因是要去掉全为一样的数字那种情况！
+                                                    && i != j && i != k && i != l && i != m && i != n && i != o
+                                                    && i != p && i != q && j != k && j != l && j != m && j != n
+                                                    && j != o && j != p && j != q && k != l && k != m && k != n
+                                                    && k != o && k != p && k != q && l != m && l != n && l != o
+                                                    && l != p && l != q && m != n && m != o && m != p && m != q
+                                                    && n != o && n != p && n != q && o != p && o != q && p != q) {
+                                                count++;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        System.out.println(count / 6);// 旋转,镜像算一种
+
+    }
+
+}
+
+
+
+
+
+
+
+
+递归
+package b2017;
+//这种接法其实也就是递归，想明白了和循环差不多
+//
+public class _02纸牌三角屋 {
+
+    static int[] a = {1,2,3,4,5,6,7,8,9};
+    static int ans;
+
+    static void f(int k){
+        if (k==9){
+            int x1 = a[0]+a[1]+a[3]+a[5];//这里是将纸牌三角屋的每个边进行编号相加
+            int x2 = a[0]+a[2]+a[4]+a[8];
+            int x3 = a[5]+a[6]+a[7]+a[8];
+            if (x1==x2&&x1==x3){//如果三个边都相等的话，ans++；
+                ans++;
+            }
+        }
+        //这里其实就是一直循环，在i未1的情况下一直进入f函数中进行位置的调换，循环9次。
+        for (int i=k;i<9;i++){
+            int t = a[k];
+            a[k] = a[i];
+            a[i] = t;
+            f(k+1);//这里是将替换过后的值代入，进行判断。然后替换后的数组进入到f方法中，如果k这个下标值到了数组的末尾，则代表此次的替换值结束，我们检查一下他的三列是否相等，然后退出该方法
+            t = a[k];//这是恢复现场，不要影响下一轮的替换。
+            a[k] = a[i];
+            a[i] = t;
+
+        }
+    }
+
+
+    public static void main(String[] args) {
+        f(0);
+        System.out.println(ans/6);//同时因为题目要求了，考虑旋转、镜像后相同的算同一种，所以循环3种，镜像两种，2*3，为6.
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+public static Set<String> set = new TreeSet<String>();
+
+    /*
+     * 求1,2,3,4,5,6,7,8,9的全部组合
+     */
+    public static void doSet(String start, String[] sourceList, int max) {
+        String[] olds = start.split("_");
+        if (olds.length == max) {//达到所要求的的组合长度
+            set.add(start.replaceAll("_", "").trim());
+        } else {
+            for (int s = 0; s < sourceList.length; s++) {
+                //判断是否包含该元素
+                if (Arrays.asList(olds).contains(sourceList[s])) {
+                    continue;
+                } else {
+                    doSet(start + "_" + sourceList[s], sourceList, max);
+                    //doSet(1_2,sourceList,max);-->doSet(1_2_3,sourceList,max);
+                    //doSet(1_3,sourceList,max);-->doSet(1_3_2,sourceList,max);
+                    //...
+                    //doSet(1_9,soucrceList,max);-->doSet(1_9_2,sourceList,max);
+                }
+            }
+        }
+    }
+
+    public static void doSet(String[] sourceList, int max) {
+        for (int start = 0; start < sourceList.length; start++) {
+            doSet(sourceList[start], sourceList, max);
+        }
+    }
+
+
+    public static int count() {
+        int count = 0;
+        Map<Integer, Integer> map = new HashMap<>();
+        for (String string : set) {
+            for (int i = 0; i < string.length(); i++) {
+                map.put(i, Integer.valueOf((string.charAt(i) - '0')));
+            }
+            int a1 = map.get(0) + map.get(1) + map.get(2) + map.get(3);
+            int a2 = map.get(3) + map.get(4) + map.get(5) + map.get(6);
+            int a3 = map.get(6) + map.get(7) + map.get(8) + map.get(0);
+            if (a1 == a2 && a2 == a3) {
+            /*  System.out.print("a1:" + a1 + " a2:" + a2 + " a3:" + a3);
+                System.out.println("符合条件的:" + string);*/
+                count++;
+            }
+            map.clear();
+        }
+        // 6---->旋转、镜像后相同的算同一种
+        return count / 6;
+    }
+
+    public static void main(String[] args) {
+        String[] haha = new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+        doSet(haha, 9);
+        int count = count();
+        System.out.println( count);
+    }
+
+

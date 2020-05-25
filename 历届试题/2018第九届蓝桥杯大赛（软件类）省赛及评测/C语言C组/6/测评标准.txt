@@ -1,0 +1,42 @@
+
+参考答案：
+max_a * n < max_b * m
+
+正确直接得分，否则把用户答案带入测评代码中的######，运行结果比对：
+59/97
+
+
+测评程序为：
+
+#include <stdio.h>
+
+int gcd(int a, int b)
+{
+	if(b==0) return a;
+	return gcd(b,a%b);	
+}
+int main()
+{
+	int a = 14;
+	int b = 23;
+	
+	int m,n;
+	int max_a = 0;
+	int max_b = 1; 
+	
+	for(n=100; n>1; n--){
+		for(m=n-1; m>=1; m--){
+			if(m*b<a*n && gcd(m,n)==1){
+				if(######){
+					max_a = m;
+					max_b = n;
+					break;
+				}
+			}
+		}
+	}
+	
+	printf("%d/%d\n", max_a, max_b);
+	
+	return 0;
+}
